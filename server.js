@@ -2,31 +2,26 @@ require('dotenv').config();
 const path = require('path');
 const fastify = require('fastify')({ 
     logger: true,
-    bodyLimit: 1048576 * 2 // 2MB
+    bodyLimit: 1048576 * 2
 });
 
-// Реєструємо плагін для CORS
 fastify.register(require('@fastify/cors'), {
     origin: true,
 });
 
-// Реєструємо плагін для роздачі статичних файлів
 fastify.register(require('@fastify/static'), {
     root: path.join(__dirname, 'public'),
     prefix: '/',
 });
 
-// Валідація email
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
 
-// POST /api/contact — обробка форми зворотного зв'язку
 fastify.post('/api/contact', async (request, reply) => {
     const { name, email, subject, message } = request.body;
 
-    // Базова валідація
     if (!name || !email || !subject || !message) {
         return reply.code(400).send({
             success: false,
@@ -42,7 +37,6 @@ fastify.post('/api/contact', async (request, reply) => {
     }
 
     try {
-        // Відправка email через Brevo API (REST)
         const brevoApiKey = process.env.BREVO_API_KEY;
         const recipientEmail = process.env.RECIPIENT_EMAIL;
 
@@ -104,7 +98,6 @@ fastify.post('/api/contact', async (request, reply) => {
     }
 });
 
-// Запуск сервера
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || 'localhost';
 
