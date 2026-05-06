@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторна Робота №6</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Лабораторна Робота №6</h1>
+        <p>Node.js бекенд-сервіс на Fastify</p>
+    </header>
+
+    <main>
+        <section class="info">
+            <h2>Про проєкт</h2>
+            <p>Цей сайт працює на Node.js сервері з використанням фреймворку Fastify.</p>
+            <p>Сервер роздає статичні файли та обробляє форму зворотного зв'язку.</p>
+        </section>
+
+        <section class="contact-form">
+            <h2>Зворотний зв'язок</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Ім'я:</label>
+                    <input type="text" id="name" name="name" required placeholder="Введіть ваше ім'я">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required placeholder="example@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="subject">Тема:</label>
+                    <input type="text" id="subject" name="subject" required placeholder="Тема повідомлення">
+                </div>
+                <div class="form-group">
+                    <label for="message">Повідомлення:</label>
+                    <textarea id="message" name="message" required placeholder="Введіть ваше повідомлення..."></textarea>
+                </div>
+                <button type="submit">Надіслати</button>
+            </form>
+            <div id="formStatus" class="form-status"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Лабораторна Робота №6. Всі права захищені.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
